@@ -7,7 +7,7 @@ params:
   title: We are the Anti-Idiot Idiots
   description: "This is our website"
   env: production # Enables enchanced SEO
-  images: [nasa-earth.jpg]
+  images: [static\img\nasa-earth.jpg]
   profileMode:
     enabled: true
     title: "We are the Anti-Idiot Idiots"
