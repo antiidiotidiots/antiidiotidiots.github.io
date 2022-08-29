@@ -5,8 +5,8 @@
     <link>https://antiidiot.group/tags/</link>
     <description>Recent content in Tags on Anti-Idiot Idiots</description>
     <image>
-      <url>https://antiidiot.group/static\img\nasa-earth.jpg</url>
-      <link>https://antiidiot.group/static\img\nasa-earth.jpg</link>
+      <url>https://antiidiot.group/static%5Cimg%5Cnasa-earth.jpg</url>
+      <link>https://antiidiot.group/static%5Cimg%5Cnasa-earth.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://antiidiot.group/tags/index.xml" rel="self" type="application/rss+xml" />
