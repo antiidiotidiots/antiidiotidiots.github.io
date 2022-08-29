@@ -16,7 +16,7 @@ params:
       - name: Blog Posts
         url: "/posts/"
       - name: Who are we?
-        url: "/about/"
+        url: "/about/us"
   socialIcons: # Show the respective social icon linked to the corresponding URL
     - name: github
       url: "https://github.com/antiidiotidiots"

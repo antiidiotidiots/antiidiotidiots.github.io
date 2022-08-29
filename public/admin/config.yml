@@ -1,0 +1,73 @@
+backend:
+  name: github
+  repo: antiidiotidiots/antiidiotidiots.github.io
+  branch: master # Branch to update (optional; defaults to master)
+media_folder: static/img
+public_folder: /img
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'content/posts'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      view: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string', required: false}
+      - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+      - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/about/us.md"
+        label: "About"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - file: "content/about/glitch752.md"
+        label: "About Glitch752"
+        name: "about-glitch752"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - file: "content/about/moo.md"
+        label: "About Moo"
+        name: "about-moo"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - file: "content/about/slashtechno.md"
+        label: "About slashtechno"
+        name: "about-slashtechno"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
