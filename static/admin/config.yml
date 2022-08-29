@@ -27,9 +27,42 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - file: "content/about.md"
+      - file: "content/about/us.md"
         label: "About"
         name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - file: "content/about/glitch752.md"
+        label: "About Glitch752"
+        name: "about-glitch752"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - file: "content/about/moo.md"
+        label: "About Moo"
+        name: "about-moo"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - {label: "Params", name: "params", widget: object, fields: [
+              {label: "SEO Title", name: "title", widget: string},
+              {label: "SEO Description", name: "description", widget: "string"}
+              ]}
+          - { label: "Cover Image", name: "image", widget: "image", required: false}
+      - file: "content/about/slashtechno.md"
+        label: "About slashtechno"
+        name: "about-slashtechno"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "text" }
