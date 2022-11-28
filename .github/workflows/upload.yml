@@ -26,17 +26,8 @@ jobs:
       - name: Build site
         run: npm run build
   # Upload the site to GitHub Pages
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: ${{ github.workspace }}
-  deploy:
-    environment:
-      name: github-pages
-#       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build-and-upload
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
