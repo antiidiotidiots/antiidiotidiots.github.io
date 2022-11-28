@@ -1,15 +1,103 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// // When the user scrolls, run this code
+// document.addEventListener("scroll", () => { 
+// 	// Get all the elements which need to be animated in
+// 	let animateInElements = document.querySelectorAll("[data-animate-in]");
+
+// 	// Loop through all the elements
+// 	animateInElements.forEach((element) => {
+// 		// Check if it's been animated in already
+// 		if (element.classList.contains("animate-in")) {
+// 			return;
+// 		}
+		
+// 		// Get the element's position relative to the viewport
+// 		let boundingRect = element.getBoundingClientRect();
+
+// 		// Get how far from the top of the screen it is
+// 		let elementTop = boundingRect.top;
+
+// 		// Check if the element is in the viewport
+// 		if (elementTop < window.innerHeight) {
+// 			element.classList.add("animate-in");
+
+// 			// Depending on the data-animate-from attribute, add the appropriate class
+// 			let animateFrom: string = element.getAttribute("data-animate-from") || "";
+// 			element.classList.add(animateFrom);
+// 		}
+// 	});
+// })
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to AII.">
 	<main>
+		<script>
+		// When the user scrolls, run this code
+document.addEventListener("scroll", () => { 
+	// Get all the elements which need to be animated in
+	let animateInElements = document.querySelectorAll("[data-animate-in]");
+
+	// Loop through all the elements
+	animateInElements.forEach((element) => {
+		// Check if it's been animated in already
+		if (element.classList.contains("animate-in")) {
+			return;
+		}
 		
+		// Get the element's position relative to the viewport
+		let boundingRect = element.getBoundingClientRect();
+
+		// Get how far from the top of the screen it is
+		let elementTop = boundingRect.top;
+
+		// Check if the element is in the viewport
+		if (elementTop < window.innerHeight) {
+			element.classList.add("animate-in");
+
+			// Depending on the data-animate-from attribute, add the appropriate class
+			let animateFrom: string = element.getAttribute("data-animate-from") || "";
+			element.classList.add(animateFrom);
+		}
+	});
+})
+		</script>
+		<div class="center">
+			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
+		</div>
 	</main>
 </Layout>
 
 <style>
-	main {
+	@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@700&display=swap'); /* Import font */
 
+	.center {
+		display: flex;
+		justify-content: center;
+		height: 70vh;
+		background: linear-gradient(to bottom, #00000088, #00000000); 
+	}
+	.title {
+		font-size: 8rem;
+		font-family: 'Encode Sans Semi Expanded', sans-serif; 
+
+		margin: 0;
+		margin-top: 10vh;
+
+		color: white;
+
+		/* Makes the text a gradient  */
+		background-clip: text;
+		/* background-clip: text makes the text the area that the backgroud property affects */
+		-webkit-background-clip: text; 
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(90deg, #991111, #26199b);
+
+
+		position: absolute;
+		z-index: 100;
+		-webkit-text-stroke: 3px rgba(255, 255, 255, 0.322);
+		text-rendering: optimizeLegibility;
 	}
 </style>
