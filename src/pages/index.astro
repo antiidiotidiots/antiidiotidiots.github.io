@@ -62,10 +62,17 @@ document.addEventListener("scroll", () => {
 		}
 	});
 })
-		</script>
+
+	</script>
 		<div class="center">
 			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
-		</div>
+			<div id="cards">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+			</div>
+	</div>
+
 	</main>
 </Layout>
 
@@ -74,9 +81,15 @@ document.addEventListener("scroll", () => {
 
 	.center {
 		display: flex;
+		flex-direction: column;
+		
+		/* Center the content */
 		justify-content: center;
+		align-items: center;
+		
 		height: 70vh;
 		background: linear-gradient(to bottom, #00000088, #00000000); 
+
 	}
 	.title {
 		font-size: 8rem;
@@ -95,9 +108,40 @@ document.addEventListener("scroll", () => {
 		background-image: linear-gradient(90deg, #991111, #26199b);
 
 
-		position: absolute;
+		position: relative;
 		z-index: 100;
 		-webkit-text-stroke: 3px rgba(255, 255, 255, 0.322);
 		text-rendering: optimizeLegibility;
+	}
+	#cards{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		max-width: 916px;
+		width: calc(100% - 20px);
+
+		justify-content: center;
+	}
+	.card{
+		background-color: rgba(177, 177, 177, 0.1);
+		border: 5px solid rgba(255, 255, 255, 0.1);
+		border-radius: 10px;
+		height: 260px;
+		position: relative;
+		width: 300px;
+
+		/* Make transform smooth */
+		transition: transform 0.5s ease;
+		/* Make margin smooth */
+		transition: margin 0.5s ease;
+
+	}
+
+	/* When card is hovered, make it bigger */
+	.card:hover{
+		transform: scale(1.1);
+
+		/* increase flexbox gap */
+		margin: 8px;
 	}
 </style>
