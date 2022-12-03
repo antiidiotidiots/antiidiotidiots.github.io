@@ -1,69 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// // When the user scrolls, run this code
-// document.addEventListener("scroll", () => { 
-// 	// Get all the elements which need to be animated in
-// 	let animateInElements = document.querySelectorAll("[data-animate-in]");
-
-// 	// Loop through all the elements
-// 	animateInElements.forEach((element) => {
-// 		// Check if it's been animated in already
-// 		if (element.classList.contains("animate-in")) {
-// 			return;
-// 		}
-		
-// 		// Get the element's position relative to the viewport
-// 		let boundingRect = element.getBoundingClientRect();
-
-// 		// Get how far from the top of the screen it is
-// 		let elementTop = boundingRect.top;
-
-// 		// Check if the element is in the viewport
-// 		if (elementTop < window.innerHeight) {
-// 			element.classList.add("animate-in");
-
-// 			// Depending on the data-animate-from attribute, add the appropriate class
-// 			let animateFrom: string = element.getAttribute("data-animate-from") || "";
-// 			element.classList.add(animateFrom);
-// 		}
-// 	});
-// })
 ---
+
+<script>
+	// When the user scrolls, run this code
+	document.addEventListener("scroll", () => { 
+		// Get all the elements which need to be animated in
+		let animateInElements = document.querySelectorAll("[data-animate-in]");
+
+		// Loop through all the elements
+		animateInElements.forEach((element) => {
+			// Check if it's been animated in already
+			if (element.classList.contains("animate-in")) {
+				return;
+			}
+			
+			// Get the element's position relative to the viewport
+			let boundingRect = element.getBoundingClientRect();
+
+			// Get how far from the top of the screen it is
+			let elementTop = boundingRect.top;
+
+			// Check if the element is in the viewport
+			if (elementTop < window.innerHeight) {
+				element.classList.add("animate-in");
+
+				// Depending on the data-animate-from attribute, add the appropriate class
+				let animateFrom: string = element.getAttribute("data-animate-from") || "";
+				element.classList.add(animateFrom);
+			}
+		});
+	})
+</script>
 
 <Layout title="Welcome to AII.">
 	<main>
-		<script>
-		// When the user scrolls, run this code
-document.addEventListener("scroll", () => { 
-	// Get all the elements which need to be animated in
-	let animateInElements = document.querySelectorAll("[data-animate-in]");
-
-	// Loop through all the elements
-	animateInElements.forEach((element) => {
-		// Check if it's been animated in already
-		if (element.classList.contains("animate-in")) {
-			return;
-		}
-		
-		// Get the element's position relative to the viewport
-		let boundingRect = element.getBoundingClientRect();
-
-		// Get how far from the top of the screen it is
-		let elementTop = boundingRect.top;
-
-		// Check if the element is in the viewport
-		if (elementTop < window.innerHeight) {
-			element.classList.add("animate-in");
-
-			// Depending on the data-animate-from attribute, add the appropriate class
-			let animateFrom: string = element.getAttribute("data-animate-from") || "";
-			element.classList.add(animateFrom);
-		}
-	});
-})
-
-	</script>
 		<div class="center">
 			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
 			<div id="cards">
@@ -71,8 +42,7 @@ document.addEventListener("scroll", () => {
 				<div class="card"></div>
 				<div class="card"></div>
 			</div>
-	</div>
-
+		</div>
 	</main>
 </Layout>
 
