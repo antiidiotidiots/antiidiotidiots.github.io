@@ -1,46 +1,30 @@
 ---
+import Card from '../components/Card.astro';
 import Layout from '../layouts/Layout.astro';
 ---
-
-<script>
-	// When the user scrolls, run this code
-	document.addEventListener("scroll", () => { 
-		// Get all the elements which need to be animated in
-		let animateInElements = document.querySelectorAll("[data-animate-in]");
-
-		// Loop through all the elements
-		animateInElements.forEach((element) => {
-			// Check if it's been animated in already
-			if (element.classList.contains("animate-in")) {
-				return;
-			}
-			
-			// Get the element's position relative to the viewport
-			let boundingRect = element.getBoundingClientRect();
-
-			// Get how far from the top of the screen it is
-			let elementTop = boundingRect.top;
-
-			// Check if the element is in the viewport
-			if (elementTop < window.innerHeight) {
-				element.classList.add("animate-in");
-
-				// Depending on the data-animate-from attribute, add the appropriate class
-				let animateFrom: string = element.getAttribute("data-animate-from") || "";
-				element.classList.add(animateFrom);
-			}
-		});
-	})
-</script>
 
 <Layout title="Welcome to AII.">
 	<main>
 		<div class="center">
 			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
-			<div id="cards">
-				<div class="card"></div>
-				<div class="card"></div>
-				<div class="card"></div>
+			<div class="cards">
+				<Card 
+					title="Glitch752"
+					body="Hi! I'm a self-taught programmer who programs as a hobby. I've been programming for over 7 years, and I love learning new things and experimenting."
+					animateFrom="bottom"
+					image="/glitch752-logo.png"
+				/>
+				<Card 
+					title="slashtechno"
+					body="I am slashtechno. I am an intermediate developer who enjoys publishing code and tinkering with technology. -- Don't be evil."
+					animateFrom="bottom"
+					image="/slashtechno-octocat.png"
+				/>
+				<Card
+					title="Mikeymoo5"
+					body="🔴 Programmer \n 🟠 Loner \n 🟡 Literally no life \n 🟢 Really bad Valorant player" 
+					animateFrom="bottom"
+					image="/mikeymoo5-logo.png" />
 			</div>
 		</div>
 	</main>
@@ -83,29 +67,13 @@ import Layout from '../layouts/Layout.astro';
 		-webkit-text-stroke: 3px rgba(255, 255, 255, 0.322);
 		text-rendering: optimizeLegibility;
 	}
-	#cards{
+	.cards {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 8px;
-		max-width: 916px;
-		width: calc(100% - 20px);
+		/* If rem is 16px, then make 80px of space on each side */
+		width: calc(100% - 10rem);
 
 		justify-content: center;
-	}
-	.card{
-		background-color: rgba(177, 177, 177, 0.1);
-		border: 5px solid rgba(255, 255, 255, 0.1);
-		border-radius: 10px;
-		height: 260px;
-		position: relative;
-		width: 300px;
-
-		/* Make transform smooth */
-		transition: transform 0.5s ease;
-	}
-
-	/* When card is hovered, make it bigger */
-	.card:hover{
-		transform: scale(1.1);
 	}
 </style>

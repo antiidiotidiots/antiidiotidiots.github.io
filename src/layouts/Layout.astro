@@ -8,19 +8,53 @@ export interface Props {
 const { title } = Astro.props;
 ---
 
+<script>
+	// When the user scrolls, run this code
+	document.addEventListener("scroll", () => { 
+		checkAnimations();
+	});
+	
+	checkAnimations();
+	
+	function checkAnimations() {
+		// Get all the elements which need to be animated in
+		let animateInElements = document.querySelectorAll("[data-animate-in]"); // Get all elements with the attribute data-animate-in
+		
+		
+		// Loop through all the elements
+		animateInElements.forEach((element) => {
+			// Check if it's been animated in already
+			if (element.classList.contains("animate-in")) {
+				return;
+			}
+			
+			// Get the element's position relative to the viewport
+			let boundingRect = element.getBoundingClientRect();
+			
+			// Get how far from the top of the screen it is
+			let elementTop = boundingRect.top;
+			
+			// Check if the element is in the viewport
+			if (elementTop < window.innerHeight) {
+				element.classList.add("animate-in");
+			}
+		});
+	}
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot /> <!-- Equivilant to <slot> </slot> -->
-		<div style="height: 500vh"></div>
-	</body>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+</head>
+<body>
+	<slot /> <!-- Equivilant to <slot> </slot> -->
+	<div style="height: 500vh"></div>
+</body>
 </html>
 
 <style is:global>
@@ -35,5 +69,45 @@ const { title } = Astro.props;
 	body {
 		margin: 0;
 	}
-</style>
 	
+	
+	[data-animate-in] { /* Applies to all elements that need to be animated in */
+		transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Makes it gradually fade in */
+	}
+	
+	[data-animate-in][data-animate-from="top"] { /* When not animated in */
+		opacity: 0 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateY(-100px); /* Move the element up by 100 pixels */
+	}
+	[data-animate-in][data-animate-from="top"].animate-in { /* When animated in */
+		opacity: 1 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateY(0); /* Move the element to it's original position */
+	}
+	
+	[data-animate-in][data-animate-from="left"] { /* When not animated in */
+		opacity: 0 !important; 		/* This takes priority over other declarations of the opacity property */
+		transform: translateX(-100px); /* Move the element in from the left */
+	}
+	[data-animate-in][data-animate-from="left"].animate-in { /* When animated in */
+		opacity: 1 !important;  /* This takes priority over other declarations of the opacity property */
+		transform: translateX(0); /* Move the element to it's original position */
+	}
+	
+	[data-animate-in][data-animate-from="right"] { /* When not animated in */
+		opacity: 0 !important; 		/* This takes priority over other declarations of the opacity property */
+		transform: translateX(100px); /* Move the element in from the right */
+	}
+	[data-animate-in][data-animate-from="right"].animate-in { /* When animated in */
+		opacity: 1 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateX(0); /* Move the element to it's original position */
+	}
+	
+	[data-animate-in][data-animate-from="bottom"] { /* When not animated in */
+		opacity: 0 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateY(100px); 		/* Move the element in from the bottom */
+	}
+	[data-animate-in][data-animate-from="bottom"].animate-in { /* When animated in */
+		opacity: 1 !important;  /* This takes priority over other declarations of the opacity property */
+		transform: translateY(0); /* Move the element to it's original position */
+	}
+</style>
