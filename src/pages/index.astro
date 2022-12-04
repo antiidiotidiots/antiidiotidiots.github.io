@@ -2,6 +2,20 @@
 import Card from '../components/Card.astro';
 import Layout from '../layouts/Layout.astro';
 import AboutUs from '../components/AboutUs.astro';
+
+
+import Projects, { Project } from '../components/Projects.astro';
+import GithubProjects from '../components/GithubProjects.astro';
+
+// set projects to be an array of Project objects
+const projects: Project[] = [
+	{
+		name: 'Project 1',
+		description: 'This is a project',
+		url: 'https://google.com',
+		image: 'https://placekitten.com/300/300',
+	},
+];
 ---
 
 <Layout
@@ -40,7 +54,14 @@ import AboutUs from '../components/AboutUs.astro';
 					animationOffset="0.3s"
 					image="/mikeymoo5-logo.png" />
 			</div>
+
 			<AboutUs />
+
+			<h1>Highlighted projects</h1>
+			<Projects projects={projects} />
+
+			<h1>All projects</h1>
+			<GithubProjects user="antiidiotidiots" />
 		</div>
 	</main>
 </Layout>

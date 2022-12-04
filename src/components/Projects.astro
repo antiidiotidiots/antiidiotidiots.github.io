@@ -1,0 +1,37 @@
+---
+// interface is a type that describes the properties of an object
+export interface Project { 
+    name: string;
+    description: string;
+    url: string;
+    image: string;
+}
+
+export interface Props {
+    // An array of projects
+    // The project interface describes information about a specific project
+    projects: Project[]; 
+}
+// Props are the properties that are passed to a component
+
+const { projects } = Astro.props;
+
+import Project from './Project.astro';
+---
+
+<script>
+
+</script>
+
+<div>
+    {
+        // Iterate over the projects and render a project component for each one
+        projects.map((project) => {
+            return <Project {...project} />
+        })
+    }
+</div>
+
+<style>
+    
+</style>
