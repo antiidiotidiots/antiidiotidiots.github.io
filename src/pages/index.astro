@@ -1,5 +1,7 @@
 ---
 import Card from '../components/Card.astro';
+import Cards from '../layouts/Cards.astro';
+
 import Layout from '../layouts/Layout.astro';
 import AboutUs from '../components/AboutUs.astro';
 
@@ -26,7 +28,7 @@ const projects: Project[] = [
 			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
 		</div>
 		<div class="center">
-			<div class="cards">
+			<Cards>
 				<Card 
 					title="Glitch752"
 					link="https://github.com/glitch752"
@@ -35,6 +37,7 @@ const projects: Project[] = [
 					animateFrom="bottom"
 					animationOffset="0.1s"
 					image="/glitch752-logo.png"
+					labelDisappears={false}
 				/>
 				<Card 
 					title="slashtechno"
@@ -44,6 +47,7 @@ const projects: Project[] = [
 					animateFrom="bottom"
 					animationOffset="0.2s"
 					image="/slashtechno-octocat.png"
+					labelDisappears={false}
 				/>
 				<Card
 					title="Mikeymoo5"
@@ -52,8 +56,10 @@ const projects: Project[] = [
 					body="🔴 Programmer \n 🟠 Loner \n 🟡 Literally no life \n 🟢 Really bad Valorant player" 
 					animateFrom="bottom"
 					animationOffset="0.3s"
-					image="/mikeymoo5-logo.png" />
-			</div>
+					image="/mikeymoo5-logo.png"
+					labelDisappears={false}
+				/>
+			</Cards>
 
 			<AboutUs />
 
@@ -112,14 +118,5 @@ const projects: Project[] = [
 		z-index: 100;
 		-webkit-text-stroke: 3px rgba(255, 255, 255, 0.322);
 		text-rendering: optimizeLegibility;
-	}
-	.cards {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-		/* If rem is 16px, then make 80px of space on each side */
-		width: calc(100% - 10rem);
-
-		justify-content: center;
 	}
 </style>

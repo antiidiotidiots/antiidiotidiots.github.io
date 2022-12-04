@@ -11,6 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.6.11"
+    "@types/jsdom": "^20.0.1",
+    "astro": "^1.6.11",
+    "jsdom": "^20.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.10"
   }
 }

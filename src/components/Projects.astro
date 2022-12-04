@@ -1,4 +1,6 @@
 ---
+import Cards from '../layouts/Cards.astro';
+
 // interface is a type that describes the properties of an object
 export interface Project { 
     name: string;
@@ -23,14 +25,15 @@ import Project from './Project.astro';
 
 </script>
 
-<div>
+<Cards>
     {
         // Iterate over the projects and render a project component for each one
         projects.map((project) => {
+            if(!project.description) project.description = "No description";
             return <Project {...project} />
         })
     }
-</div>
+</Cards>
 
 <style>
     

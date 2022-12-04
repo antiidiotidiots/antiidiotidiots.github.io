@@ -1,23 +1,36 @@
 ---
+import Card from './Card.astro';
+
+// @ts-ignore -- Makes TypeScript happy
+import { JSDOM } from 'jsdom';
+
 export interface Props { 
     name: string;
     description: string;
     url: string;
-    image: string;
+    image: string | null;
 }
 
 let { image, name, description, url } = Astro.props;
+
+if (!image) {
+    const response = await fetch(url);
+    const html = await response.text();
+    const dom = new JSDOM(html);
+    const meta = dom.window.document.querySelector('meta[property="og:image"]');
+    if (meta) {
+        image = meta.getAttribute('content');
+    }
+}
 ---
 
-<a href={url}>
-    <h1>{ name }</h1>
-    <p>{ description }</p>
-    <img src={image}>
-</a>
-
-<style>
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-</style>
+<Card
+    title={name}
+    body={description}
+    link={url}
+    animateFrom="left"
+    animationOffset="0"
+    newTab={true}
+    image={image}
+    labelDisappears={true}
+/>
