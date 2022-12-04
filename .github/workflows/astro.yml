@@ -3,11 +3,12 @@ name: Github Pages Astro CI
 on:
   # Trigger the workflow every time you push to the `main` branch
 
-  # Allows the workflow to be run manually from the Actions tab on GitHub.
-  workflow_dispatch:
   
   push:
     branches: [ "from-scratch-remake" ] # Should be changed to master when ready
+  
+  # Allows the workflow to be run manually from the Actions tab on GitHub.
+  workflow_dispatch:
 
   
 # Allow this job to clone the repo and create a page deployment
