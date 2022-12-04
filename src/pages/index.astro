@@ -4,10 +4,14 @@ import Layout from '../layouts/Layout.astro';
 import AboutUs from '../components/AboutUs.astro';
 ---
 
-<Layout title="Welcome to AII.">
+<Layout
+	title="Welcome to AII."
+	description="Anti-Idiot Idiots main page">
 	<main>
-		<div class="center">
+		<div class="title-wrapper">
 			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
+		</div>
+		<div class="center">
 			<div class="cards">
 				<Card 
 					title="Glitch752"
@@ -44,7 +48,7 @@ import AboutUs from '../components/AboutUs.astro';
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@700&display=swap'); /* Import font */
 
-	.center {
+	.title-wrapper {
 		display: flex;
 		flex-direction: column;
 		
@@ -53,12 +57,22 @@ import AboutUs from '../components/AboutUs.astro';
 		align-items: center;
 		
 		height: 70vh;
+		max-width: calc(100vw - 2rem);
 		background: linear-gradient(to bottom, #00000088, #00000000); 
 
+	}
+	.center {
+		display: flex;
+		flex-direction: column;
+		
+		/* Center the content */
+		align-items: center;
 	}
 	.title {
 		font-size: 8rem;
 		font-family: 'Encode Sans Semi Expanded', sans-serif; 
+
+		text-align: center;
 
 		margin: 0;
 		margin-top: 10vh;
@@ -81,7 +95,7 @@ import AboutUs from '../components/AboutUs.astro';
 	.cards {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 8px;
+		gap: 1rem;
 		/* If rem is 16px, then make 80px of space on each side */
 		width: calc(100% - 10rem);
 

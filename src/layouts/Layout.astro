@@ -1,11 +1,11 @@
 ---
 export interface Props {
 	title: string;
+	description: string;
 }
-// What are props?
 // Props are the properties that are passed to a component
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <script>
@@ -53,13 +53,32 @@ const { title } = Astro.props;
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content={description} />
+	<meta name="keywords" content="anti-idiot-idiots, aii, programmers, developers">
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<!-- Setup opengraph -->
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content="/favicon.svg" />
+	<!-- Set og:url to current url -->
+	<meta property="og:url" content={Astro.url} />
+	<meta property="og:site_name" content="Anti-Idiot Idiots" />
+	<meta property="og:type" content="website" />
+	<!-- Setup Twitter card -->
+	<!-- https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup -->
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<!-- <meta name="twitter:site" content="@AntiIdiotIdiots" /> -->
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="/favicon.svg" />
+	
+	<link rel="stylesheet" href="/styles/main.css" />
 	<meta name="generator" content={Astro.generator} />
 	<title>{title}</title>
 </head>
 <body>
 	<slot /> <!-- Equivilant to <slot> </slot> -->
-	<div style="height: 500vh"></div>
+	<div></div>
 </body>
 </html>
 
