@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v2          
       - name: Install, build, and upload the site
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PROJECTS_API_KEY }}
+          GITHUB_API_TOKEN: ${{ secrets.GH_PROJECTS_API_KEY }}
         uses: withastro/action@v0
         # with:
             # path: . # The root location of the Astro project inside the repository. (optional)
