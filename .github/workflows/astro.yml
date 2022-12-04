@@ -9,6 +9,10 @@ on:
   
   # Allows the workflow to be run manually from the Actions tab on GitHub.
   workflow_dispatch:
+  
+  # Also run once a day to update projects
+  schedule:
+    - cron: '0 0 * * *'
 
   
 # Allow this job to clone the repo and create a page deployment
@@ -24,6 +28,8 @@ jobs:
       - name: Checkout the repository using git
         uses: actions/checkout@v2          
       - name: Install, build, and upload the site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PROJECTS_API_KEY }}
         uses: withastro/action@v0
         # with:
             # path: . # The root location of the Astro project inside the repository. (optional)
