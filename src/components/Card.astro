@@ -3,31 +3,48 @@ export interface Props {
 	title: string;
 	body: string;
 	animateFrom: string;
+	link: string;
 	image: string;
+	newTab: boolean;
+	animationOffset: string;
 }
 
-const { title, body, animateFrom, image } = Astro.props;
+const { title, body, animateFrom, link, image, animationOffset, newTab } = Astro.props;
+
+let target;
+
+if(newTab) {
+	target = "_blank";
+} else {
+	target = "_self";
+}
 ---
 
-<div class="card-outer" data-animate-in data-animate-from={animateFrom}>
-	<div class="card">
-		<img src={image}>
-		<h1>{title}</h1>
-		<p>
-			{body.split('\n').map((text) => {
-				return (
-					// Tells astro that multiple elements are being returned
-					<>
-						{text}
-						<br />
-					</>
-				)
-			})}
-		</p>
-	</div>
+<div class="card-outer" data-animate-in data-animate-from={animateFrom} data-animation-offset={animationOffset}> 
+	<a href={link} target={target}>
+		<div class="card">
+			<img src={image}>
+			<h1>{title}</h1>
+			<p>
+				{body.split('\n').map((text) => {
+					return (
+						// Tells astro that multiple elements are being returned
+						<>
+							{text}
+							<br />
+						</>
+					)
+				})}
+			</p>
+		</div>
+	</a>
 </div>
 
 <style>
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
 	.card {
 		background-color: rgba(177, 177, 177, 0.1);
 		border: 5px solid rgba(255, 255, 255, 0.1);

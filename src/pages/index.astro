@@ -1,6 +1,7 @@
 ---
 import Card from '../components/Card.astro';
 import Layout from '../layouts/Layout.astro';
+import AboutUs from '../components/AboutUs.astro';
 ---
 
 <Layout title="Welcome to AII.">
@@ -10,22 +11,32 @@ import Layout from '../layouts/Layout.astro';
 			<div class="cards">
 				<Card 
 					title="Glitch752"
-					body="Hi! I'm a self-taught programmer who programs as a hobby. I've been programming for over 7 years, and I love learning new things and experimenting."
+					link="https://github.com/glitch752"
+					newTab={true}
+					body="Hi! I'm a self-taught programmer who programs as a hobby.\nI've been programming for over 7 years, and I love learning new things and experimenting."
 					animateFrom="bottom"
+					animationOffset="0.1s"
 					image="/glitch752-logo.png"
 				/>
 				<Card 
 					title="slashtechno"
-					body="I am slashtechno. I am an intermediate developer who enjoys publishing code and tinkering with technology - Don't be evil."
+					link="https://github.com/slashtechno"
+					newTab={true}
+					body="I am slashtechno. I am an intermediate developer who enjoys publishing code and tinkering with technology\n- Don't be evil."
 					animateFrom="bottom"
+					animationOffset="0.2s"
 					image="/slashtechno-octocat.png"
 				/>
 				<Card
 					title="Mikeymoo5"
+					link="https://github.com/mikeymoo5"
+					newTab={true}
 					body="🔴 Programmer \n 🟠 Loner \n 🟡 Literally no life \n 🟢 Really bad Valorant player" 
 					animateFrom="bottom"
+					animationOffset="0.3s"
 					image="/mikeymoo5-logo.png" />
 			</div>
+			<AboutUs />
 		</div>
 	</main>
 </Layout>

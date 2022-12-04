@@ -37,6 +37,12 @@ const { title } = Astro.props;
 			// Check if the element is in the viewport
 			if (elementTop < window.innerHeight) {
 				element.classList.add("animate-in");
+				// animation-offset is the amount of time to wait before the animation starts, in seconds, after it loads in
+				if(element.hasAttribute("data-animation-offset")) {
+					let offset = element.getAttribute("data-animation-offset");
+					// @ts-ignore
+					element.style.transitionDelay = offset;
+				}
 			}
 		});
 	}
