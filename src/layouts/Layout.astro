@@ -1,0 +1,138 @@
+---
+export interface Props {
+	title: string;
+	description: string;
+}
+// Props are the properties that are passed to a component
+
+const { title, description } = Astro.props;
+---
+
+<script>
+	// When the user scrolls, run this code
+	document.addEventListener("scroll", () => { 
+		checkAnimations();
+	});
+	
+	checkAnimations();
+	
+	function checkAnimations() {
+		// Get all the elements which need to be animated in
+		let animateInElements = document.querySelectorAll("[data-animate-in]"); // Get all elements with the attribute data-animate-in
+		
+		
+		// Loop through all the elements
+		animateInElements.forEach((element) => {
+			// Check if it's been animated in already
+			if (element.classList.contains("animate-in")) {
+				return;
+			}
+			
+			// Get the element's position relative to the viewport
+			let boundingRect = element.getBoundingClientRect();
+			
+			// Get how far from the top of the screen it is
+			let elementTop = boundingRect.top;
+			
+			// Check if the element is in the viewport
+			if (elementTop < window.innerHeight) {
+				element.classList.add("animate-in");
+				// animation-offset is the amount of time to wait before the animation starts, in seconds, after it loads in
+				if(element.hasAttribute("data-animation-offset")) {
+					let offset = element.getAttribute("data-animation-offset");
+					// @ts-ignore
+					element.style.transitionDelay = offset;
+				}
+			}
+		});
+	}
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content={description} />
+	<meta name="keywords" content="anti-idiot-idiots, aii, programmers, developers">
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<!-- Setup opengraph -->
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content="/favicon.svg" />
+	<!-- Set og:url to current url -->
+	<meta property="og:url" content={Astro.url} />
+	<meta property="og:site_name" content="Anti-Idiot Idiots" />
+	<meta property="og:type" content="website" />
+	<!-- Setup Twitter card -->
+	<!-- https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/markup -->
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<!-- <meta name="twitter:site" content="@AntiIdiotIdiots" /> -->
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content="/favicon.svg" />
+	
+	<link rel="stylesheet" href="/styles/main.css" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+</head>
+<body>
+	<slot /> <!-- Equivilant to <slot> </slot> -->
+	<div></div>
+</body>
+</html>
+
+<style is:global>
+	:root {
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		color: #fff;
+		--gradient-size: 300vh;
+		background: repeating-linear-gradient(6deg, #060b19 0px, #1d0606 calc(var(--gradient-size) / 2), #060b19 var(--gradient-size));
+	}
+	body {
+		margin: 0;
+	}
+	
+	
+	[data-animate-in] { /* Applies to all elements that need to be animated in */
+		transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Makes it gradually fade in */
+	}
+	
+	[data-animate-in][data-animate-from="top"] { /* When not animated in */
+		opacity: 0 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateY(-100px); /* Move the element up by 100 pixels */
+	}
+	[data-animate-in][data-animate-from="top"].animate-in { /* When animated in */
+		opacity: 1 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateY(0); /* Move the element to it's original position */
+	}
+	
+	[data-animate-in][data-animate-from="left"] { /* When not animated in */
+		opacity: 0 !important; 		/* This takes priority over other declarations of the opacity property */
+		transform: translateX(-100px); /* Move the element in from the left */
+	}
+	[data-animate-in][data-animate-from="left"].animate-in { /* When animated in */
+		opacity: 1 !important;  /* This takes priority over other declarations of the opacity property */
+		transform: translateX(0); /* Move the element to it's original position */
+	}
+	
+	[data-animate-in][data-animate-from="right"] { /* When not animated in */
+		opacity: 0 !important; 		/* This takes priority over other declarations of the opacity property */
+		transform: translateX(100px); /* Move the element in from the right */
+	}
+	[data-animate-in][data-animate-from="right"].animate-in { /* When animated in */
+		opacity: 1 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateX(0); /* Move the element to it's original position */
+	}
+	
+	[data-animate-in][data-animate-from="bottom"] { /* When not animated in */
+		opacity: 0 !important; /* This takes priority over other declarations of the opacity property */
+		transform: translateY(100px); 		/* Move the element in from the bottom */
+	}
+	[data-animate-in][data-animate-from="bottom"].animate-in { /* When animated in */
+		opacity: 1 !important;  /* This takes priority over other declarations of the opacity property */
+		transform: translateY(0); /* Move the element to it's original position */
+	}
+</style>

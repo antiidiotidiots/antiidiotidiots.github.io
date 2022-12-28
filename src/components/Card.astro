@@ -1,0 +1,107 @@
+---
+export interface Props {
+	title: string;
+	body: string;
+	animateFrom: string;
+	link: string;
+	image: string | null;
+	newTab: boolean;
+	animationOffset: string;
+	labelDisappears: boolean;
+}
+
+const { title, body, animateFrom, link, image, animationOffset, newTab, darken, labelDisappears } = Astro.props;
+
+let target;
+
+if(newTab) {
+	target = "_blank";
+} else {
+	target = "_self";
+}
+---
+
+<div class="card-outer" data-animate-in data-animate-from={animateFrom} data-animation-offset={animationOffset}> 
+	<a href={link} target={target}>
+		<div class={`card ${labelDisappears ? "labelDisappears" : ""}`}>
+			<img src={image} alt={title}>
+			<h1>{title}</h1>
+			<p>
+				{body.split('\n').map((text) => {
+					return (
+						// Tells astro that multiple elements are being returned
+						<>
+							{text}
+							<br />
+						</>
+					)
+				})}
+			</p>
+		</div>
+	</a>
+</div>
+
+<style>
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.card {
+		background-color: rgba(177, 177, 177, 0.1);
+		border: 5px solid rgba(255, 255, 255, 0.1);
+		position: relative;
+
+		width: 22rem;
+		/* Set aspect ratio to a square */
+		aspect-ratio: 1/1; 
+		
+		/* Make transform smooth */
+		transition: transform 0.5s ease, color 0.5s ease, text-shadow 0.5s ease; 
+
+		/* Center the text inside the card */
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		color: white;
+    }
+	
+	img {
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: auto;
+		opacity: 0.5;
+		transition: opacity 0.5s ease, filter 0.5s ease;
+		filter: blur(3px); /* Blur the image */
+		background-color: #111114;
+	}
+	h1 {
+		font-size: 2rem;
+		color: inherit;
+		text-shadow: 0 0 10px #000000;
+	}
+	p {
+		font-size: 1rem;
+		margin: 0 2rem;
+		color: inherit;
+		text-shadow: 0 0 5px #000000;
+	}
+
+	/* When card is hovered, make it bigger */
+	.card:hover {
+		transform: scale(1.1) !important; /* !important is needed because of the animation */
+		/* color: rgba(82, 82, 82, 0.815);  */
+	}
+	.card:hover img { /* Applies to a hovered card's image */
+		opacity: 1;
+		filter: blur(0); /* Remove blur while hovered */
+	}
+	.card:hover.labelDisappears {
+		color: transparent; /* Make text disappear */
+	}
+	.card:hover.labelDisappears * {
+		text-shadow: none; /* Remove text shadow */
+	}
+</style>

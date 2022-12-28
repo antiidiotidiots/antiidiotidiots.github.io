@@ -1,0 +1,122 @@
+---
+import Card from '../components/Card.astro';
+import Cards from '../layouts/Cards.astro';
+
+import Layout from '../layouts/Layout.astro';
+import AboutUs from '../components/AboutUs.astro';
+
+
+import Projects, { Project } from '../components/Projects.astro';
+import GithubProjects from '../components/GithubProjects.astro';
+
+// set projects to be an array of Project objects
+const projects: Project[] = [
+	{
+		name: 'Project 1',
+		description: 'This is a project',
+		url: 'https://google.com',
+		image: 'https://placekitten.com/300/300',
+	},
+];
+---
+
+<Layout
+	title="Welcome to AII."
+	description="Anti-Idiot Idiots main page">
+	<main>
+		<div class="title-wrapper">
+			<h1 class="title" data-animate-in data-animate-from="top">Anti-Idiot Idiots</h1>
+		</div>
+		<div class="center">
+			<Cards>
+				<Card 
+					title="Glitch752"
+					link="https://github.com/glitch752"
+					newTab={true}
+					body="Hi! I'm a self-taught programmer who programs as a hobby.\nI've been programming for over 7 years, and I love learning new things and experimenting."
+					animateFrom="bottom"
+					animationOffset="0.1s"
+					image="/glitch752-logo.png"
+					labelDisappears={false}
+				/>
+				<Card 
+					title="slashtechno"
+					link="https://github.com/slashtechno"
+					newTab={true}
+					body="I am slashtechno. I am an intermediate developer who enjoys publishing code and tinkering with technology\n- Don't be evil."
+					animateFrom="bottom"
+					animationOffset="0.2s"
+					image="/slashtechno-octocat.png"
+					labelDisappears={false}
+				/>
+				<Card
+					title="Mikeymoo5"
+					link="https://github.com/mikeymoo5"
+					newTab={true}
+					body="🔴 Programmer \n 🟠 Loner \n 🟡 Literally no life \n 🟢 Really bad Valorant player" 
+					animateFrom="bottom"
+					animationOffset="0.3s"
+					image="/mikeymoo5-logo.png"
+					labelDisappears={false}
+				/>
+			</Cards>
+
+			<AboutUs />
+
+			<h1>Highlighted projects</h1>
+			<Projects projects={projects} />
+
+			<h1>All projects</h1>
+			<GithubProjects user="antiidiotidiots" />
+		</div>
+	</main>
+</Layout>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@700&display=swap'); /* Import font */
+
+	.title-wrapper {
+		display: flex;
+		flex-direction: column;
+		
+		/* Center the content */
+		justify-content: center;
+		align-items: center;
+		
+		height: 70vh;
+		max-width: calc(100vw - 2rem);
+		background: linear-gradient(to bottom, #00000088, #00000000); 
+
+	}
+	.center {
+		display: flex;
+		flex-direction: column;
+		
+		/* Center the content */
+		align-items: center;
+	}
+	.title {
+		font-size: 8rem;
+		font-family: 'Encode Sans Semi Expanded', sans-serif; 
+
+		text-align: center;
+
+		margin: 0;
+		margin-top: 10vh;
+
+		color: white;
+
+		/* Makes the text a gradient  */
+		background-clip: text;
+		/* background-clip: text makes the text the area that the backgroud property affects */
+		-webkit-background-clip: text; 
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(90deg, #991111, #26199b);
+
+
+		position: relative;
+		z-index: 100;
+		-webkit-text-stroke: 3px rgba(255, 255, 255, 0.322);
+		text-rendering: optimizeLegibility;
+	}
+</style>

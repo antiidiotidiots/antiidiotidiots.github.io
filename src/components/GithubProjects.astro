@@ -1,0 +1,40 @@
+---
+import Projects from './Projects.astro';
+
+export interface Props {
+    user: string
+}
+
+let { user } = Astro.props;
+
+let requestString: string = `https://api.github.com/users/${user}/repos`;
+
+let apiToken: string = import.meta.env.GITHUB_API_TOKEN;
+
+let projects = await fetch(requestString, {
+    method: "GET",
+    headers: {
+        Authorization: `Bearer ${apiToken}`
+    }
+}).then(res => res.json());
+
+projects = projects.map((project: any) => {
+    return {
+        name: project.name,
+        description: project.description,
+        url: project.html_url
+    }
+});
+---
+
+<script>
+
+</script>
+
+<div>
+    <Projects projects={projects} />
+</div>
+
+<style>
+
+</style>
